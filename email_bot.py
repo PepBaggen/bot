@@ -5,7 +5,6 @@ import pandas as pd
 import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import openai
 import requests
 
 # Email configuration
@@ -18,7 +17,6 @@ SMTP_PORT = 465  # For SSL
 RECIPIENTS = ['pepijnbaggen@gmail.com', 'maritbootmb@gmail.com', 'eline.sebregts@gmail.com', 'danielbreure@hotmail.nl', 'salknopper@gmail.com', 'bischoffcasper@gmail.com', 'francescaborghmans@gmail.com', 'mika.verhulst@icloud.com' ]  # Add other email addresses as needed
 
 # OpenAI API configuration
-openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # Load the CSV file
 df = pd.read_csv('rooster.csv')
@@ -43,24 +41,7 @@ schedule_date = next_schedule['Datum'].strftime('%d-%m-%Y')
 tasks = next_schedule.drop('Datum')  # Exclude the 'Datum' column
 
 # Generate AI message
-def generate_ai_message():
-    prompt = "Provide an inspirational quote or message for the week."
-    try:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt}
-            ]
-        )
-        ai_message = response['choices'][0]['message']['content'].strip()
-        print(f"AI message generated: {ai_message}")
-        return ai_message
-    except Exception as e:
-        print(f"Failed to generate AI message: {e}")
-        return ""
 
-ai_message = generate_ai_message()
 
 # Get weather forecast
 def get_weather_forecast(city_name='Leiden'):
@@ -96,7 +77,7 @@ subject = f'Cleanup Schedule for the Week of {schedule_date}'
 body = f"""
 <html>
   <body>
-    <p><strong>Hey stelletje flikkers, hierbij het schoonmaak rooster van deze week! {schedule_date}</strong></p>
+    <p><strong>Hey stelletje feuten, hierbij het schoonmaak rooster van deze week! {schedule_date}</strong></p>
 
     
     <table border="1" cellpadding="5" cellspacing="0">
