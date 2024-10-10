@@ -1,27 +1,35 @@
-name: Send Weekly Email
+name: Schedule Email Bot
 
 on:
   schedule:
-    - cron: '0 10 * * 2'  # Adjust time as needed
-  workflow_dispatch:
+    - cron: '0 15 * * 2'  # Runs every Tuesday at 3:00 PM UTC (5:00 PM AMS during daylight saving time)
 
 jobs:
-  send_email:
+  run-email-bot:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: |
-          pip install pandas openai requests pytz
-      - name: Run script
-        env:
-          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
-        run: |
-          python email_bot.py
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas
+        pip install smtplib
+        pip install openai
+        pip install requests
+
+    - name: Run email bot
+      env:
+        EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+      run: |
+        python bot.py
