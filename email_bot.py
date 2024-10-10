@@ -19,16 +19,11 @@ RECIPIENTS = ['pepijnbaggen@gmail.com']  # Add other email addresses as needed
 df = pd.read_csv('rooster.csv')
 
 # Parse the 'Datum' column as dates
-df['Datum'] = pd.to_datetime(df['Datum'], format='%d-%m-%Y')
+df['Datum'] = pd.to_datetime(df['Datum'])
+today = pd.to_datetime(today)
+upcoming_schedules = df[df['Datum'] >= today]
 
 # Sort the DataFrame by date
-df = df.sort_values('Datum')
-
-# Get today's date
-today = datetime.datetime.now().date()
-
-# Find the next scheduled date (the closest date on or after today)
-upcoming_schedules = df[df['Datum'] >= today]
 
 if upcoming_schedules.empty:
     print("No upcoming schedules found.")
