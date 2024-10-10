@@ -74,6 +74,9 @@ def get_weather_forecast(city_name='Leiden'):
 
 weather_info = get_weather_forecast()
 
+# Define the email subject
+subject = f'Cleanup Schedule for the Week of {schedule_date}'
+
 # Create the HTML body
 body = f"""
 <html>
