@@ -96,9 +96,10 @@ subject = f'Cleanup Schedule for the Week of {schedule_date}'
 body = f"""
 <html>
   <body>
-    <p><strong>Cleanup Schedule for the Week of {schedule_date}</strong></p>
-    {f"<p><em>{ai_message}</em></p>" if ai_message else ""}
-    {weather_info if weather_info else ""}
+    <p><strong>Hey stelletje flikkers, hierbij het schoonmaak rooster van deze week! {schedule_date}</strong></p>
+    <img src="{'https://media.ia.utwente.nl/amelie/activities/icon/Feutens1e2.mp4.gif'}" alt="Weekly Cleanup Schedule GIF" style="width:100%;height:auto;">
+
+    
     <table border="1" cellpadding="5" cellspacing="0">
       <tr>
         <th>Task</th>
@@ -117,14 +118,14 @@ for task_name, assigned_to in tasks.items():
 
 body += """
     </table>
-    <p>Please complete your assigned tasks by the end of the week.</p>
+    <p>Doe je taak voor woensdag 18:00 anders boeteeee. Oh ja en sal trekt een bak! </p>
   </body>
 </html>
 """
 
 # Create the email message
 message = MIMEMultipart('alternative')
-message['Subject'] = subject
+message['Subject'] = f'Schoonmaak Rooster DKN {schedule_date}'
 message['From'] = EMAIL_ADDRESS
 message['To'] = ', '.join(RECIPIENTS)
 
