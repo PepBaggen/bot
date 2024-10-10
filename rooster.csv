@@ -1,59 +1,35 @@
-Datum,Keuken beneden 1,Keuken beneden 2,Keuken boven,Badkamer beneden,Badkamer boven,Gang beneden,Gang boven,Keuken boven
-30-04-2024,Marit,Pep,Daniel,Ces,Eline ,Mika,Sal,Casper
-07-05-2024,Casper,Marit ,Pep,Daniel,Ces,Eline,Mika,Sal
-14-05-2024,Sal,Casper,Marit,Pep,Daniel,Ces,Eline,Mika
-21-05-2024,Mika,Sal,Casper,Marit,Pep,Daniel,Ces,Eline
-28-05-2024,Eline,Mika,Sal,Casper,Marit,Pep,Daniel,Ces
-04-06-2024,Ces,Eline,Mika,Sal,Casper,Marit,Pep,Daniel 
-11-06-2024,Daniel,Ces,Eline,Mika,Sal,Casper,Marit,Pep
-18-06-2024,Pep,Daniel,Ces,Eline,Mika,Sal,Casper,Marit
-25-06-2024,Marit,Pep,Daniel,Ces,Eline ,Mika,Sal,Casper
-02-07-2024,Casper,Marit ,Pep,Daniel,Ces,Eline,Mika,Sal
-09-07-2024,Sal,Casper,Marit,Pep,Daniel,Ces,Eline,Mika
-16-07-2024,Mika,Sal,Casper,Marit,Pep,Daniel,Ces,Eline
-23-07-2024,Eline,Mika,Sal,Casper,Marit,Pep,Daniel,Ces
-30-07-2024,Ces,Eline,Mika,Sal,Casper,Marit,Pep,Daniel 
-06-08-2024,Daniel,Ces,Eline,Mika,Sal,Casper,Marit,Pep
-13-08-2024,Pep,Daniel,Ces,Eline,Mika,Sal,Casper,Marit
-20-08-2024,Marit,Pep,Daniel,Ces,Eline ,Mika,Sal,Casper
-27-08-2024,Casper,Marit ,Pep,Daniel,Ces,Eline,Mika,Sal
-03-09-2024,Sal,Casper,Marit,Pep,Daniel,Ces,Eline,Mika
-10-09-2024,Mika,Sal,Casper,Marit,Pep,Daniel,Ces,Eline
-17-09-2024,Eline,Mika,Sal,Casper,Marit,Pep,Daniel,Ces
-24-09-2024,Ces,Eline,Mika,Sal,Casper,Marit,Pep,Daniel 
-01-10-2024,Daniel,Ces,Eline,Mika,Sal,Casper,Marit,Pep
-08-10-2024,Pep,Daniel,Ces,Eline,Mika,Sal,Casper,Marit
-15-10-2024,Marit,Pep,Daniel,Ces,Eline ,Mika,Sal,Casper
-22-10-2024,Casper,Marit ,Pep,Daniel,Ces,Eline,Mika,Sal
+Datum,Keuken beneden 1,Keuken beneden 2,Keuken boven,Badkamer beneden,Badkamer boven,Gang beneden,Gang boven,Keuken boven (Duplicate)
+15-10-2024,Marit,Pep,Daniel,Ces,Eline,Mika,Sal,Casper
+22-10-2024,Casper,Marit,Pep,Daniel,Ces,Eline,Mika,Sal
 29-10-2024,Sal,Casper,Marit,Pep,Daniel,Ces,Eline,Mika
 05-11-2024,Mika,Sal,Casper,Marit,Pep,Daniel,Ces,Eline
 12-11-2024,Eline,Mika,Sal,Casper,Marit,Pep,Daniel,Ces
-19-11-2024,Ces,Eline,Mika,Sal,Casper,Marit,Pep,Daniel 
+19-11-2024,Ces,Eline,Mika,Sal,Casper,Marit,Pep,Daniel
 26-11-2024,Daniel,Ces,Eline,Mika,Sal,Casper,Marit,Pep
 03-12-2024,Pep,Daniel,Ces,Eline,Mika,Sal,Casper,Marit
-10-12-2024,Marit,Pep,Daniel,Ces,Eline ,Mika,Sal,Casper
-17-12-2024,Casper,Marit ,Pep,Daniel,Ces,Eline,Mika,Sal
+10-12-2024,Marit,Pep,Daniel,Ces,Eline,Mika,Sal,Casper
+17-12-2024,Casper,Marit,Pep,Daniel,Ces,Eline,Mika,Sal
 24-12-2024,Sal,Casper,Marit,Pep,Daniel,Ces,Eline,Mika
 31-12-2024,Mika,Sal,Casper,Marit,Pep,Daniel,Ces,Eline
-7-1-2025,Eline,Mika,Sal,Casper,Marit,Pep,Daniel,Ces
-14-1-2025,Ces,Eline,Mika,Sal,Casper,Marit,Pep,Daniel 
-21-1-2025,Daniel,Ces,Eline,Mika,Sal,Casper,Marit,Pep
-28-1-2025,Pep,Daniel,Ces,Eline,Mika,Sal,Casper,Marit
-4-2-2025,Marit,Pep,Daniel,Ces,Eline ,Mika,Sal,Casper
-11-2-2025,Casper,Marit ,Pep,Daniel,Ces,Eline,Mika,Sal
-18-2-2025,Sal,Casper,Marit,Pep,Daniel,Ces,Eline,Mika
-25-2-2025,Mika,Sal,Casper,Marit,Pep,Daniel,Ces,Eline
-4-3-2025,Eline,Mika,Sal,Casper,Marit,Pep,Daniel,Ces
-11-3-2025,Ces,Eline,Mika,Sal,Casper,Marit,Pep,Daniel 
-18-3-2025,Daniel,Ces,Eline,Mika,Sal,Casper,Marit,Pep
-25-3-2025,Pep,Daniel,Ces,Eline,Mika,Sal,Casper,Marit
-1-4-2025,Marit,Pep,Daniel,Ces,Eline ,Mika,Sal,Casper
-8-4-2025,Casper,Marit ,Pep,Daniel,Ces,Eline,Mika,Sal
-15-4-2025,Sal,Casper,Marit,Pep,Daniel,Ces,Eline,Mika
-22-4-2025,Mika,Sal,Casper,Marit,Pep,Daniel,Ces,Eline
-29-4-2025,Eline,Mika,Sal,Casper,Marit,Pep,Daniel,Ces
-6-5-2025,Ces,Eline,Mika,Sal,Casper,Marit,Pep,Daniel 
-13-5-2025,Daniel,Ces,Eline,Mika,Sal,Casper,Marit,Pep
-20-5-2025,Pep,Daniel,Ces,Eline,Mika,Sal,Casper,Marit
-27-5-2025,Marit,Pep,Daniel,Ces,Eline ,Mika,Sal,Casper
-3-6-2025,Casper,Marit ,Pep,Daniel,Ces,Eline,Mika,Sal
+07-01-2025,Eline,Mika,Sal,Casper,Marit,Pep,Daniel,Ces
+14-01-2025,Ces,Eline,Mika,Sal,Casper,Marit,Pep,Daniel
+21-01-2025,Daniel,Ces,Eline,Mika,Sal,Casper,Marit,Pep
+28-01-2025,Pep,Daniel,Ces,Eline,Mika,Sal,Casper,Marit
+04-02-2025,Marit,Pep,Daniel,Ces,Eline,Mika,Sal,Casper
+11-02-2025,Casper,Marit,Pep,Daniel,Ces,Eline,Mika,Sal
+18-02-2025,Sal,Casper,Marit,Pep,Daniel,Ces,Eline,Mika
+25-02-2025,Mika,Sal,Casper,Marit,Pep,Daniel,Ces,Eline
+04-03-2025,Eline,Mika,Sal,Casper,Marit,Pep,Daniel,Ces
+11-03-2025,Ces,Eline,Mika,Sal,Casper,Marit,Pep,Daniel
+18-03-2025,Daniel,Ces,Eline,Mika,Sal,Casper,Marit,Pep
+25-03-2025,Pep,Daniel,Ces,Eline,Mika,Sal,Casper,Marit
+01-04-2025,Marit,Pep,Daniel,Ces,Eline,Mika,Sal,Casper
+08-04-2025,Casper,Marit,Pep,Daniel,Ces,Eline,Mika,Sal
+15-04-2025,Sal,Casper,Marit,Pep,Daniel,Ces,Eline,Mika
+22-04-2025,Mika,Sal,Casper,Marit,Pep,Daniel,Ces,Eline
+29-04-2025,Eline,Mika,Sal,Casper,Marit,Pep,Daniel,Ces
+06-05-2025,Ces,Eline,Mika,Sal,Casper,Marit,Pep,Daniel
+13-05-2025,Daniel,Ces,Eline,Mika,Sal,Casper,Marit,Pep
+20-05-2025,Pep,Daniel,Ces,Eline,Mika,Sal,Casper,Marit
+27-05-2025,Marit,Pep,Daniel,Ces,Eline,Mika,Sal,Casper
+03-06-2025,Casper,Marit,Pep,Daniel,Ces,Eline,Mika,Sal
