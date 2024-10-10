@@ -46,15 +46,14 @@ tasks = next_schedule.drop('Datum')  # Exclude the 'Datum' column
 def generate_ai_message():
     prompt = "Provide an inspirational quote or message for the week."
     try:
-        response = openai.Completion.create(
-            engine='text-davinci-003',
-            prompt=prompt,
-            max_tokens=50,
-            n=1,
-            stop=None,
-            temperature=0.7,
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ]
         )
-        ai_message = response.choices[0].text.strip()
+        ai_message = response['choices'][0]['message']['content'].strip()
         print(f"AI message generated: {ai_message}")
         return ai_message
     except Exception as e:
