@@ -23,17 +23,12 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 # Load the CSV file
 df = pd.read_csv('rooster.csv')
 
-# Parse the 'Datum' column as dates
-df['Datum'] = pd.to_datetime(df['Datum'], format='%d-%m-%Y')
+df['Datum'] = pd.to_datetime(df['Datum'], dayfirst=True)
+today = pd.to_datetime(datetime.today())
+upcoming_schedules = df[df['Datum'] >= today]
 
 # Sort the DataFrame by date
-df = df.sort_values('Datum')
-
-# Get today's date
-today = datetime.datetime.now().date()
-
-# Find the next scheduled date (the closest date on or after today)
-upcoming_schedules = df[df['Datum'] >= today]
+upcoming_schedules = upcoming_schedules.sort_values(by='Datum')
 
 if upcoming_schedules.empty:
     print("No upcoming schedules found.")
