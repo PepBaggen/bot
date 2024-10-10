@@ -15,7 +15,7 @@ SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 465  # For SSL
 
 # Recipient email addresses
-RECIPIENTS = ['pepijnbaggen@gmail.com']  # Add other email addresses as needed
+RECIPIENTS = ['pepijnbaggen@gmail.com', 'maritbootmb@gmail.com', 'eline.sebregts@gmail.com', 'danielbreure@hotmail.nl', 'salknopper@gmail.com', 'bischoffcasper@gmail.com', 'francescaborghmans@gmail.com', 'mika.verhulst@icloud.com' ]  # Add other email addresses as needed
 
 # OpenAI API configuration
 openai.api_key = os.getenv('OPENAI_API_KEY')
