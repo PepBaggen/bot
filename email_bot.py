@@ -1,27 +1,30 @@
-import os
-import pandas as pd
 import smtplib
 import ssl
-from email.mime.multipart import MIMEMultipart
+import os
+import pandas as pd
+import datetime
 from email.mime.text import MIMEText
-from datetime import datetime
+from email.mime.multipart import MIMEMultipart
+import openai
 import requests
 
 # Email configuration
-EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')  # Retrieve your email address from environment variables
-EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')  # Retrieve your app password from environment variables
+EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 465  # For SSL
 
 # Recipient email addresses
 RECIPIENTS = ['pepijnbaggen@gmail.com']  # Add other email addresses as needed
 
+# OpenAI API configuration
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
 # Load the CSV file
 df = pd.read_csv('rooster.csv')
 
-# Parse the 'Datum' column as dates
 df['Datum'] = pd.to_datetime(df['Datum'], dayfirst=True)
-today = pd.to_datetime(datetime.today())
+today = pd.to_datetime(datetime.datetime.today())
 upcoming_schedules = df[df['Datum'] >= today]
 
 # Sort the DataFrame by date
@@ -36,11 +39,23 @@ next_schedule = upcoming_schedules.iloc[0]
 # Extract the date and assignments
 schedule_date = next_schedule['Datum'].strftime('%d-%m-%Y')
 
-# Generate AI message (dummy function for illustration)
+# Build the task assignments
+tasks = next_schedule.drop('Datum')  # Exclude the 'Datum' column
+
+# Generate AI message
 def generate_ai_message():
+    prompt = "Provide an inspirational quote or message for the week."
     try:
-        # Dummy AI message generation logic
-        ai_message = "This is a generated AI message."
+        response = openai.Completion.create(
+            engine='text-davinci-003',
+            prompt=prompt,
+            max_tokens=50,
+            n=1,
+            stop=None,
+            temperature=0.7,
+        )
+        ai_message = response.choices[0].text.strip()
+        print(f"AI message generated: {ai_message}")
         return ai_message
     except Exception as e:
         print(f"Failed to generate AI message: {e}")
@@ -62,11 +77,12 @@ def get_weather_forecast(city_name='Leiden'):
         forecast = data['list']
         weather_info = "<p><strong>Weekly Weather Forecast:</strong></p><ul>"
         for day in forecast:
-            date = datetime.fromtimestamp(day['dt']).strftime('%A, %d %B %Y')
+            date = datetime.datetime.fromtimestamp(day['dt']).strftime('%A, %d %B %Y')
             temp = day['main']['temp']
             description = day['weather'][0]['description'].capitalize()
             weather_info += f"<li>{date}: {description}, {temp}°C</li>"
         weather_info += "</ul>"
+        print(f"Weather info generated: {weather_info}")
         return weather_info
     except Exception as e:
         print(f"Failed to get weather forecast: {e}")
@@ -92,7 +108,7 @@ body = f"""
 """
 
 # Add each task and assigned person to the email body
-for task_name, assigned_to in next_schedule.drop('Datum').items():
+for task_name, assigned_to in tasks.items():
     body += f"""
       <tr>
         <td>{task_name}</td>
