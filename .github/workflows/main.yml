@@ -2,7 +2,7 @@ name: Send Weekly Email
 
 on:
   schedule:
-    - cron: '0 10 * * 2'  # Adjust time as needed
+    - cron: '0 15 * * 2'  # Runs every Tuesday at 3:00 PM UTC (5:00 PM AMS during daylight saving time)
   workflow_dispatch:    # Allows manual triggering
 
 jobs:
