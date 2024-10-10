@@ -1,0 +1,33 @@
+name: Send Weekly Email
+
+on:
+  schedule:
+    - cron: '0 12 * * 2'  # At 12:00 PM every Tuesday (UTC)
+  workflow_dispatch:    # Allows manual triggering of the workflow
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # So that we can push back to the repository
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install pandas
+      - name: Run script
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: |
+          python email_bot.py
+      - name: Commit and push current_index.txt
+        run: |
+          git config --global user.email "kalenelbot@gmail.com"
+          git config --global user.name "KaleNelBot"
+          git add current_index.txt
+          git commit -m "Update current_index.txt"
+          git push
