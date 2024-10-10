@@ -1,30 +1,39 @@
-import os
-import pandas as pd
 import smtplib
 import ssl
-from email.mime.multipart import MIMEMultipart
+import os
+import pandas as pd
+import datetime
 from email.mime.text import MIMEText
-from datetime import datetime
+from email.mime.multipart import MIMEMultipart
+import openai
+import requests
 
 # Email configuration
-EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')  # Retrieve your email address from environment variables
-EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')  # Retrieve your app password from environment variables
+EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 465  # For SSL
 
 # Recipient email addresses
 RECIPIENTS = ['pepijnbaggen@gmail.com']  # Add other email addresses as needed
 
+# OpenAI API configuration
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
 # Load the CSV file
 df = pd.read_csv('rooster.csv')
 
 # Parse the 'Datum' column as dates
-df['Datum'] = pd.to_datetime(df['Datum'], dayfirst=True)
-today = pd.to_datetime(datetime.today())
-upcoming_schedules = df[df['Datum'] >= today]
+df['Datum'] = pd.to_datetime(df['Datum'], format='%d-%m-%Y')
 
 # Sort the DataFrame by date
-upcoming_schedules = upcoming_schedules.sort_values(by='Datum')
+df = df.sort_values('Datum')
+
+# Get today's date
+today = datetime.datetime.now().date()
+
+# Find the next scheduled date (the closest date on or after today)
+upcoming_schedules = df[df['Datum'] >= today]
 
 if upcoming_schedules.empty:
     print("No upcoming schedules found.")
@@ -35,17 +44,62 @@ next_schedule = upcoming_schedules.iloc[0]
 # Extract the date and assignments
 schedule_date = next_schedule['Datum'].strftime('%d-%m-%Y')
 
-# Prepare the email content
-subject = f'Cleanup Schedule for the Week of {schedule_date}'
-
 # Build the task assignments
 tasks = next_schedule.drop('Datum')  # Exclude the 'Datum' column
+
+# Generate AI message
+def generate_ai_message():
+    prompt = "Provide an inspirational quote or message for the week."
+    try:
+        response = openai.Completion.create(
+            engine='text-davinci-003',
+            prompt=prompt,
+            max_tokens=50,
+            n=1,
+            stop=None,
+            temperature=0.7,
+        )
+        ai_message = response.choices[0].text.strip()
+        return ai_message
+    except Exception as e:
+        print(f"Failed to generate AI message: {e}")
+        return ""
+
+ai_message = generate_ai_message()
+
+# Get weather forecast
+def get_weather_forecast(city_name='Amsterdam'):
+    api_key = os.getenv('WEATHER_API_KEY')
+    url = f"http://api.openweathermap.org/data/2.5/forecast?q={city_name}&cnt=7&appid={api_key}&units=metric"
+    try:
+        response = requests.get(url)
+        data = response.json()
+        if response.status_code != 200:
+            print(f"Failed to get weather data: {data.get('message', '')}")
+            return ""
+        
+        forecast = data['list']
+        weather_info = "<p><strong>Weekly Weather Forecast:</strong></p><ul>"
+        for day in forecast:
+            date = datetime.datetime.fromtimestamp(day['dt']).strftime('%A, %d %B %Y')
+            temp = day['main']['temp']
+            description = day['weather'][0]['description'].capitalize()
+            weather_info += f"<li>{date}: {description}, {temp}°C</li>"
+        weather_info += "</ul>"
+        return weather_info
+    except Exception as e:
+        print(f"Failed to get weather forecast: {e}")
+        return ""
+
+weather_info = get_weather_forecast()
 
 # Create the HTML body
 body = f"""
 <html>
   <body>
     <p><strong>Cleanup Schedule for the Week of {schedule_date}</strong></p>
+    {f"<p><em>{ai_message}</em></p>" if ai_message else ""}
+    {weather_info if weather_info else ""}
     <table border="1" cellpadding="5" cellspacing="0">
       <tr>
         <th>Task</th>
