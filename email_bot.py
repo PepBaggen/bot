@@ -1,10 +1,10 @@
-import smtplib
-import ssl
 import os
 import pandas as pd
-import datetime
-from email.mime.text import MIMEText
+import smtplib
+import ssl
 from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from datetime import datetime
 
 # Email configuration
 EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')  # Retrieve your email address from environment variables
@@ -19,11 +19,12 @@ RECIPIENTS = ['pepijnbaggen@gmail.com']  # Add other email addresses as needed
 df = pd.read_csv('rooster.csv')
 
 # Parse the 'Datum' column as dates
-df['Datum'] = pd.to_datetime(df['Datum'])
-today = pd.to_datetime(today)
+df['Datum'] = pd.to_datetime(df['Datum'], dayfirst=True)
+today = pd.to_datetime(datetime.today())
 upcoming_schedules = df[df['Datum'] >= today]
 
 # Sort the DataFrame by date
+upcoming_schedules = upcoming_schedules.sort_values(by='Datum')
 
 if upcoming_schedules.empty:
     print("No upcoming schedules found.")
