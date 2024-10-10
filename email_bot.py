@@ -68,7 +68,7 @@ def generate_ai_message():
 ai_message = generate_ai_message()
 
 # Get weather forecast
-def get_weather_forecast(city_name='Amsterdam'):
+def get_weather_forecast(city_name='Leiden'):
     api_key = os.getenv('WEATHER_API_KEY')
     url = f"http://api.openweathermap.org/data/2.5/forecast?q={city_name}&cnt=7&appid={api_key}&units=metric"
     try:
