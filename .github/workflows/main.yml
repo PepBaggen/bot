@@ -2,8 +2,8 @@ name: Send Weekly Email
 
 on:
   schedule:
-    - cron: '0 15 * * 2'  # Runs every Tuesday at 3:00 PM UTC (5:00 PM AMS during daylight saving time)
-  workflow_dispatch:    # Allows manual triggering
+    - cron: '0 10 * * 2'  # Adjust time as needed
+  workflow_dispatch:
 
 jobs:
   send_email:
@@ -15,10 +15,13 @@ jobs:
         with:
           python-version: '3.x'
       - name: Install dependencies
-        run: pip install pandas
+        run: |
+          pip install pandas openai requests pytz
       - name: Run script
         env:
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
         run: |
           python email_bot.py
