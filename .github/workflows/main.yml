@@ -2,7 +2,7 @@ name: Schedule Email Bot
 
 on:
   schedule:
-    - cron: '0 15 * * 2'  # Runs every Tuesday at 3:00 PM UTC (5:00 PM AMS during daylight saving time)
+    - cron: '0 10 * * 2'  # Runs every Tuesday at 3:00 PM UTC (5:00 PM AMS during daylight saving time)
   workflow_dispatch:
 
 jobs:
