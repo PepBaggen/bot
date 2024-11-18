@@ -101,7 +101,7 @@ for task_name, assigned_to in tasks.items():
 
 body += """
     </table>
-    <p>Doe je taak voor woensdag 18:00 anders boeteeee. Oh ja en sal de entrepeneur trekt een bak! </p>
+    <p>Doe je taak voor woensdag 18:00 anders boete </p>
   </body>
 </html>
 """
