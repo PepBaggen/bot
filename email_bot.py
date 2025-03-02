@@ -19,7 +19,7 @@ RECIPIENTS = ['pepijnbaggen@gmail.com', 'maritbootmb@gmail.com', 'eline.sebregts
 # OpenAI API configuration
 
 # Load the CSV file
-df = pd.read_csv('rooster.csv')
+df = pd.read_csv('rooster.csv', sep=';')
 
 df['Datum'] = pd.to_datetime(df['Datum'], dayfirst=True)
 today = pd.to_datetime(datetime.datetime.today())
