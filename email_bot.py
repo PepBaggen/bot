@@ -78,7 +78,7 @@ body = f"""
 <html>
   <body>
     <p><strong>Hey stelletje feuten, hierbij het schoonmaak rooster van deze week! {schedule_date}</strong></p>
-
+<img src="{'https://media.ia.utwente.nl/amelie/activities/icon/Feutens1e2.mp4.gif'}" alt="Weekly Cleanup Schedule GIF" style="width:20%;height:auto;">
     
     <table border="1" cellpadding="5" cellspacing="0">
       <tr>
@@ -86,7 +86,7 @@ body = f"""
         <th>Assigned To</th>
       </tr>
 
-        <img src="{'https://media.ia.utwente.nl/amelie/activities/icon/Feutens1e2.mp4.gif'}" alt="Weekly Cleanup Schedule GIF" style="width:20%;height:auto;">
+        
 
 """
 
